@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -21,7 +22,16 @@
 
   <div class="music-container" id="music-container">
     <div class="music-info">
-      <h4 id="title"></h4>
+      <div class="title-wrapper">
+        <div class="left">
+        <h4 id="title"></h4>
+        </div>
+        <div class="right">
+        <p id="time-full" class="time"></p>
+        <p class="time">/</p>
+        <p id="time-left" class="time"></p>
+         </div>
+      </div>
       <div class="progress-container" id="progress-container">
         <div class="progress" id="progress"></div>
       </div>
@@ -49,4 +59,3 @@
 </body>
 
 </html>
-
