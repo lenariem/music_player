@@ -18,6 +18,19 @@
 </head>
 
 <body>
+  <div class="bg-color">
+    
+    <select>
+      <options><span><i class="fas fa-palette"></i></span></options>
+      <options value="blue"><span>blue</span></options>
+      <options value="black"><span>black</span></options>
+      <options value="lila"><span>lila</span></options>
+      <options value="yellow"><span>yellow</span></options>
+      <options value="green"><span>green</span></options>
+    </select>
+  
+  </div>
+
   <h1>Music Player <i class="fas fa-music"></i></h1>
 
   <div class="music-container" id="music-container">
@@ -53,7 +66,20 @@
         <i class="fas fa-forward"></i>
       </button>
     </div>
+
+    
   </div>
+  <div class="slider_container" id="slider_container">
+    <button class="volume-btn" id="min-volume-btn" >
+      <i class="fa fa-volume-down"></i>
+    </button>
+    <input type="range" min="1" max="100" value="50" class="volume_slider" id="volume_slider">
+    <button class="volume-btn" id="max-volume-btn">
+      <i class="fa fa-volume-up"></i>
+    </button>
+  </div>
+
+  
 
   <script src="script.js"></script>
 </body>

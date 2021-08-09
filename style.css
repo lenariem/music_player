@@ -15,6 +15,13 @@ body {
   justify-content: center;
   font-family: 'Lato', sans-serif;
   margin: 0;
+  position: relative;
+}
+
+.bg-color {
+  position: absolute;
+  top: 50px;
+  right: 70px;
 }
 
 .music-container {
@@ -150,3 +157,45 @@ body {
   width: 0%;
   transition: width 0.1s linear;
 }
+
+.slider_container {
+ opacity: 0;
+ transition: transform 0.3s ease-in, opacity 0.3s ease-in;
+ cursor: pointer;
+}
+
+
+.slider_container.play {
+  opacity: 1;
+}
+
+.volume-btn {
+  cursor: pointer;
+  outline: 0;
+  border: 0;
+  font-size: 1.3rem;
+  background: transparent;
+  transition: 0.3s;
+}
+
+
+.volume_slider {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  height: 5px;
+  background: black;
+  cursor: pointer;
+}
+
+.volume_slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  background: #cdc2d0;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
