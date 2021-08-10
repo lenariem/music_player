@@ -121,7 +121,6 @@ function setVolume() {
     minVolumeBtn.querySelector('.fa').classList.remove('fa-volume-down');
     minVolumeBtn.querySelector('.fa').classList.add('fa-volume-mute');
   }
- // console.log("volume", audio.volume, volumeSlider.value)
 }
 
 
@@ -164,8 +163,11 @@ maxVolumeBtn.addEventListener('click', () => {
 });
 
 minVolumeBtn.addEventListener('click', () => {
-  audio.volume = 0;
-  volumeSlider.value = 1;
-  minVolumeBtn.querySelector('.fa').classList.remove('fa-volume-down');
-  minVolumeBtn.querySelector('.fa').classList.add('fa-volume-mute');
+  if(minVolumeBtn.querySelector('.fa').classList.contains('fa-volume-down')){
+    minVolumeBtn.querySelector('.fa').classList.remove('fa-volume-down');
+    minVolumeBtn.querySelector('.fa').classList.add('fa-volume-mute');
+    audio.volume = 0;
+  } else {
+    setVolume()
+  }
 })
