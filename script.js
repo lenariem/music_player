@@ -13,6 +13,51 @@ const timeFull = document.getElementById('time-full');
 const timeLeft = document.getElementById('time-left');
 const sliderContainer = document.getElementById('slider_container');
 const volumeSlider = document.getElementById('volume_slider');
+const bgSelect = document.getElementById('bg-select');
+const selectBtn = document.getElementById('select-btn');
+
+
+function setBg(e) {
+  const color = e.srcElement.getAttribute('data-color');
+
+  function setBgStyle(gradient) {
+    document.body.style.backgroundImage = gradient;
+    selectBtn.style.backgroundImage = gradient;
+    bgSelect.classList.remove('bg-select-show');
+  }
+
+  switch (color) {
+    case "pink":
+      setBgStyle("linear-gradient(0deg, rgba(247, 247, 247, 1) 23.8%, rgba(252, 221, 221, 1) 92%)");
+      break;
+    case "blue":
+      setBgStyle("linear-gradient(315deg, #36096d 0%, #37d5d6 74%)");
+      break;
+    case "black":
+      setBgStyle("linear-gradient(315deg, #000000 0%, #414141 74%)");
+      break;
+    case "yellow":
+      setBgStyle("linear-gradient(315deg, #f39f86 0%, #f9d976 74%)");
+      break;
+    case "green":
+      setBgStyle("linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(123,253,45,1) 100%)");
+      break;
+    default:
+      bgSelect.classList.remove('bg-select-show');
+  }
+ 
+}
+
+
+bgSelect.addEventListener('click', setBg);
+
+selectBtn.addEventListener('click', () => {
+  if(bgSelect.classList.contains('bg-select-show')){
+    bgSelect.classList.remove('bg-select-show');
+  } else {
+    bgSelect.classList.add('bg-select-show');
+  }
+})
 
 // Song titles
 const songs = ['hey', 'summer', 'ukulele'];

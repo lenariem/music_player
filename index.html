@@ -18,17 +18,31 @@
 </head>
 
 <body>
-  <div class="bg-color">
-    
-    <select>
-      <options><span><i class="fas fa-palette"></i></span></options>
-      <options value="blue"><span>blue</span></options>
-      <options value="black"><span>black</span></options>
-      <options value="lila"><span>lila</span></options>
-      <options value="yellow"><span>yellow</span></options>
-      <options value="green"><span>green</span></options>
+  <!-- <div class="bg-color-choice">
+    <span><i class="fas fa-paint-brush"></i></span>
+    <select name="select" class="bg-select" id="bg-select">
+      <option value="pink" class="color-option pink"></option>
+      <option value="blue" class="color-option blue"></option>
+      <option value="black" class="color-option black"></option>
+      <option value="yellow" class="color-option yellow"></option>
+      <option value="green" class="color-option green"></option>
     </select>
+  </div> -->
   
+  <div class="bg-color-choice">
+    <div class="select-wrapper">
+      <span><i class="fas fa-paint-brush"></i></span>
+      <div class="select-btn" id="select-btn"></div>
+    </div>
+   
+      <div class="bg-select-container" id="bg-select">
+        <div data-color="pink" class="color-option pink">Pink</div>
+        <div data-color="blue" class="color-option blue">Blue</div>
+        <div data-color="black" class="color-option black">Black</div>
+        <div data-color="yellow" class="color-option yellow">Yellow</div>
+        <div data-color="green" class="color-option green">Green</div>
+      </div>
+    
   </div>
 
   <h1>Music Player <i class="fas fa-music"></i></h1>
