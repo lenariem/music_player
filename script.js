@@ -16,16 +16,26 @@ const volumeSlider = document.getElementById('volume_slider');
 const bgSelect = document.getElementById('bg-select');
 const selectBtn = document.getElementById('select-btn');
 
+let color;
 
-function setBg(e) {
-  const color = e.srcElement.getAttribute('data-color');
 
-  function setBgStyle(gradient) {
-    document.body.style.backgroundImage = gradient;
-    selectBtn.style.backgroundImage = gradient;
-    bgSelect.classList.remove('bg-select-show');
-  }
+window.addEventListener("load", () => {
+  const localStorageBgColor = JSON.parse(localStorage.getItem('bg-color'));
+  color = localStorageBgColor !== null ? localStorageBgColor : "pink";
+  console.log("color from body"+ color)
+  setColorChoice(color);
+});
 
+function setBgStyle(gradient) {
+  document.body.style.backgroundImage = gradient;
+  selectBtn.style.backgroundImage = gradient;
+  localStorage.setItem('bg-color', JSON.stringify(color));
+  bgSelect.classList.remove('bg-select-show');
+}
+
+
+function setColorChoice(color) {
+  console.log("color from select"+ color);
   switch (color) {
     case "pink":
       setBgStyle("linear-gradient(0deg, rgba(247, 247, 247, 1) 23.8%, rgba(252, 221, 221, 1) 92%)");
@@ -34,7 +44,7 @@ function setBg(e) {
       setBgStyle("linear-gradient(315deg, #36096d 0%, #37d5d6 74%)");
       break;
     case "black":
-      setBgStyle("linear-gradient(315deg, #000000 0%, #414141 74%)");
+      setBgStyle("linear-gradient(to right, #0f2027, #203a43, #2c5364)");
       break;
     case "yellow":
       setBgStyle("linear-gradient(315deg, #f39f86 0%, #f9d976 74%)");
@@ -43,9 +53,13 @@ function setBg(e) {
       setBgStyle("linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(123,253,45,1) 100%)");
       break;
     default:
-      bgSelect.classList.remove('bg-select-show');
+      setBgStyle("linear-gradient(0deg, rgba(247, 247, 247, 1) 23.8%, rgba(252, 221, 221, 1) 92%)");
   }
- 
+}
+
+function setBg(e) {
+  color = e.srcElement.getAttribute('data-color');
+  setColorChoice(color);
 }
 
 
