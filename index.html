@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -18,31 +17,18 @@
 </head>
 
 <body>
-  <!-- <div class="bg-color-choice">
-    <span><i class="fas fa-paint-brush"></i></span>
-    <select name="select" class="bg-select" id="bg-select">
-      <option value="pink" class="color-option pink"></option>
-      <option value="blue" class="color-option blue"></option>
-      <option value="black" class="color-option black"></option>
-      <option value="yellow" class="color-option yellow"></option>
-      <option value="green" class="color-option green"></option>
-    </select>
-  </div> -->
-  
   <div class="bg-color-choice">
     <div class="select-wrapper">
       <span><i class="fas fa-paint-roller"></i></span>
       <div class="select-btn" id="select-btn"></div>
     </div>
-   
-      <div class="bg-select-container" id="bg-select">
-        <div data-color="pink" class="color-option pink">Pink</div>
-        <div data-color="blue" class="color-option blue">Blue</div>
-        <div data-color="black" class="color-option black">Black</div>
-        <div data-color="yellow" class="color-option yellow">Yellow</div>
-        <div data-color="green" class="color-option green">Green</div>
-      </div>
-    
+    <div class="bg-select-container" id="bg-select">
+      <div data-color="pink" class="color-option pink">Pink</div>
+      <div data-color="blue" class="color-option blue">Blue</div>
+      <div data-color="black" class="color-option black">Black</div>
+      <div data-color="yellow" class="color-option yellow">Yellow</div>
+      <div data-color="green" class="color-option green">Green</div>
+    </div>
   </div>
 
   <h1>Music Player <i class="fas fa-music"></i></h1>
@@ -51,23 +37,23 @@
     <div class="music-info">
       <div class="title-wrapper">
         <div class="left">
-        <h4 id="title"></h4>
+          <h4 id="title"></h4>
         </div>
         <div class="right">
-        <p id="time-full" class="time"></p>
-        <p class="time">/</p>
-        <p id="time-left" class="time"></p>
-         </div>
+          <p id="time-full" class="time"></p>
+          <p class="time">/</p>
+          <p id="time-left" class="time"></p>
+        </div>
       </div>
       <div class="progress-container" id="progress-container">
         <div class="progress" id="progress"></div>
       </div>
     </div>
 
-    <audio src="music/ukulele.mp3" id="audio"></audio>
+    <audio src="music/hey.mp3" id="audio"></audio>
 
     <div class="img-container">
-      <img src="images/ukulele.jpg" alt="music-cover" id="cover" />
+      <img src="images/hey.jpg" alt="music-cover" id="cover" />
     </div>
     <div class="navigation">
       <button id="prev" class="action-btn">
@@ -80,11 +66,10 @@
         <i class="fas fa-forward"></i>
       </button>
     </div>
-
-    
   </div>
+
   <div class="slider_container" id="slider_container">
-    <button class="volume-btn" id="min-volume-btn" >
+    <button class="volume-btn" id="min-volume-btn">
       <i class="fa fa-volume-down"></i>
     </button>
     <input type="range" min="1" max="100" value="50" class="volume_slider" id="volume_slider">
@@ -92,8 +77,6 @@
       <i class="fa fa-volume-up"></i>
     </button>
   </div>
-
-  
 
   <script src="script.js"></script>
 </body>

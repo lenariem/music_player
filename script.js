@@ -18,24 +18,130 @@ const selectBtn = document.getElementById('select-btn');
 
 let color;
 
+// Song titles
+const songs = ['hey', 'summer', 'ukulele'];
 
-window.addEventListener("load", () => {
-  const localStorageBgColor = JSON.parse(localStorage.getItem('bg-color'));
-  color = localStorageBgColor !== null ? localStorageBgColor : "pink";
-  console.log("color from body"+ color)
-  setColorChoice(color);
-});
+// Keep track of song
+let songIndex = 0;
 
-function setBgStyle(gradient) {
-  document.body.style.backgroundImage = gradient;
-  selectBtn.style.backgroundImage = gradient;
-  localStorage.setItem('bg-color', JSON.stringify(color));
-  bgSelect.classList.remove('bg-select-show');
+//Initially load song details into DOM
+loadSong(songs[songIndex]);
+
+// Update song details
+function loadSong(song) {
+  title.innerText = song;
+  audio.src = `music/${song}.mp3`;
+  cover.src = `images/${song}.jpg`;
+}
+
+// Play song
+function playSong() {
+  musicContainer.classList.add('play');
+  sliderContainer.classList.add('play');
+  playBtn.querySelector('i.fas').classList.remove('fa-play');
+  playBtn.querySelector('i.fas').classList.add('fa-pause');
+
+  audio.play();
+}
+
+// Pause song
+function pauseSong() {
+  musicContainer.classList.remove('play');
+  sliderContainer.classList.remove('play');
+  playBtn.querySelector('i.fas').classList.add('fa-play');
+  playBtn.querySelector('i.fas').classList.remove('fa-pause');
+
+  audio.pause();
+}
+
+// Next song
+function nextSong() {
+  songIndex++;
+  if (songIndex >= songs.length) {
+    songIndex = 0;
+  }
+
+  loadSong(songs[songIndex]);
+  playSong();
+}
+
+// Prev song
+function prevSong() {
+  songIndex--;
+  if (songIndex < 0) {
+    songIndex = songs.length - 1;
+  }
+
+  loadSong(songs[songIndex]);
+  playSong();
+}
+
+// Update progress bar
+function updateProgress(e) {
+  const {
+    duration,
+    currentTime
+  } = e.srcElement;
+  const progressPercent = (currentTime / duration) * 100;
+  progress.style.width = `${progressPercent}%`;
+}
+
+// Set progress bar
+function setProgress(e) {
+  //total width
+  const width = this.clientWidth;
+  const clickX = e.offsetX;
+  const duration = audio.duration;
+  audio.currentTime = (clickX / width) * duration;
+}
+
+// Set time
+function setTime(e) {
+  const {
+    duration,
+    currentTime
+  } = e.srcElement;
+  if (!isNaN(duration)) {
+    const totalMin = Math.floor(duration / 60);
+    let totalSec = Math.floor(duration % 60);
+    //if sec is less than 10 then add 0 before it
+    if (totalSec < 10) {
+      totalSec = `0${totalSec}`;
+    }
+    timeFull.innerText = `${totalMin}:${totalSec}`;
+  }
+
+  const currentMin = Math.floor(currentTime / 60);
+  let currentSec = Math.floor(currentTime % 60);
+  if (currentSec < 10) {
+    currentSec = `0${currentSec}`;
+  }
+  timeLeft.innerText = `${currentMin}:${currentSec}`;
 }
 
 
+// Set volume
+function setVolume() {
+  // Set the volume according to the percentage of the volume slider set
+  audio.volume = volumeSlider.value / 100;
+  if (audio.volume > 0) {
+    minVolumeBtn.querySelector('.fa').classList.remove('fa-volume-mute');
+    minVolumeBtn.querySelector('.fa').classList.add('fa-volume-down');
+  } else {
+    minVolumeBtn.querySelector('.fa').classList.remove('fa-volume-down');
+    minVolumeBtn.querySelector('.fa').classList.add('fa-volume-mute');
+  }
+}
+
+// Set Background
 function setColorChoice(color) {
-  console.log("color from select"+ color);
+  function setBgStyle(gradient) {
+    document.body.style.backgroundImage = gradient;
+    selectBtn.style.backgroundImage = gradient;
+    localStorage.setItem('bg-color', JSON.stringify(color));
+    bgSelect.classList.remove('bg-select-show');
+  }
+
   switch (color) {
     case "pink":
       setBgStyle("linear-gradient(0deg, rgba(247, 247, 247, 1) 23.8%, rgba(252, 221, 221, 1) 92%)");
@@ -57,139 +163,32 @@ function setColorChoice(color) {
   }
 }
 
-function setBg(e) {
-  color = e.srcElement.getAttribute('data-color');
+//Event listeners
+// Set background
+window.addEventListener("load", () => {
+  const localStorageBgColor = JSON.parse(localStorage.getItem('bg-color'));
+  color = localStorageBgColor !== null ? localStorageBgColor : "pink";
   setColorChoice(color);
-}
+});
 
-
-bgSelect.addEventListener('click', setBg);
+bgSelect.addEventListener('click', (e) => {
+  color = e.target.getAttribute('data-color');
+  setColorChoice(color);
+});
 
 selectBtn.addEventListener('click', () => {
-  if(bgSelect.classList.contains('bg-select-show')){
+  if (bgSelect.classList.contains('bg-select-show')) {
     bgSelect.classList.remove('bg-select-show');
   } else {
     bgSelect.classList.add('bg-select-show');
   }
-})
-
-// Song titles
-const songs = ['hey', 'summer', 'ukulele'];
-
-// Keep track of song
-let songIndex = 0;
-
-//Initially load song details into DOM
-loadSong(songs[songIndex]);
-
-// Update song details
-function loadSong(song) {
-  title.innerText = song;
-  audio.src = `music/${song}.mp3`;
-  cover.src = `images/${song}.jpg`;
-}
-
-//Play song
-function playSong() {
-  musicContainer.classList.add('play');
-  sliderContainer.classList.add('play');
-  playBtn.querySelector('i.fas').classList.remove('fa-play');
-  playBtn.querySelector('i.fas').classList.add('fa-pause');
-
-  audio.play();
-}
-
-//Pause song
-function pauseSong() {
-    musicContainer.classList.remove('play');
-    sliderContainer.classList.remove('play');
-    playBtn.querySelector('i.fas').classList.add('fa-play');
-    playBtn.querySelector('i.fas').classList.remove('fa-pause');
-  
-    audio.pause();
-}
-
-// Next song
-function nextSong() {
-  songIndex++;
-  if(songIndex >= songs.length) {
-    songIndex = 0;
-  }
-  
-  loadSong(songs[songIndex]);
-  playSong();
-}
-
-//Prev song
-function prevSong() {
-  songIndex--;
-  if(songIndex < 0) {
-    songIndex = songs.length-1;
-  }
-  
-  loadSong(songs[songIndex]);
-  playSong();
-}
-
-// Update progress bar
-function updateProgress(e) {
-  const {duration, currentTime} = e.srcElement;
-  const progressPercent = (currentTime / duration) * 100;
-  progress.style.width = `${progressPercent}%`;
-}
-
-// Set progress bar
-function setProgress(e) {
-  //total width
-  const width = this.clientWidth;
-  const clickX = e.offsetX;
-  const duration = audio.duration;
-  audio.currentTime = (clickX / width) * duration;
-}
-
-//set time
-function setTime(e) {
-  const {duration, currentTime} = e.srcElement;
-  if (!isNaN(duration)) {
-    const totalMin = Math.floor(duration / 60);
-    let totalSec = Math.floor(duration % 60);
-    //if sec is less than 10 then add 0 before it
-    if(totalSec < 10){ 
-      totalSec = `0${totalSec}`;
-    }
-    timeFull.innerText = `${totalMin}:${totalSec}`;
-  }
-
-  const currentMin = Math.floor(currentTime / 60);
-  let currentSec = Math.floor(currentTime % 60);
-  if(currentSec < 10){ 
-    currentSec = `0${currentSec}`;
-  }
-  timeLeft.innerText = `${currentMin}:${currentSec}`;
-}
-
-
-//set volume
-function setVolume() {
-  // Set the volume according to the percentage of the volume slider set
-  audio.volume = volumeSlider.value / 100;
-  if (audio.volume > 0) {
-    minVolumeBtn.querySelector('.fa').classList.remove('fa-volume-mute');
-    minVolumeBtn.querySelector('.fa').classList.add('fa-volume-down');
-  } else {
-    minVolumeBtn.querySelector('.fa').classList.remove('fa-volume-down');
-    minVolumeBtn.querySelector('.fa').classList.add('fa-volume-mute');
-  }
-}
-
-
-//Event listeners
+});
 
 // Play
 playBtn.addEventListener('click', () => {
   const isPlaying = musicContainer.classList.contains('play');
-  
-  if(isPlaying) {
+
+  if (isPlaying) {
     pauseSong();
   } else {
     playSong();
@@ -222,7 +221,7 @@ maxVolumeBtn.addEventListener('click', () => {
 });
 
 minVolumeBtn.addEventListener('click', () => {
-  if(minVolumeBtn.querySelector('.fa').classList.contains('fa-volume-down')){
+  if (minVolumeBtn.querySelector('.fa').classList.contains('fa-volume-down')) {
     minVolumeBtn.querySelector('.fa').classList.remove('fa-volume-down');
     minVolumeBtn.querySelector('.fa').classList.add('fa-volume-mute');
     audio.volume = 0;

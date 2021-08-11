@@ -5,9 +5,9 @@
 }
 
 body {
- background-image: linear-gradient(0deg,
+  background-image: linear-gradient(0deg,
       rgba(247, 247, 247, 1) 23.8%,
-      rgba(252, 221, 221, 1) 92%); 
+      rgba(252, 221, 221, 1) 92%);
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -50,7 +50,7 @@ body {
   justify-content: center;
   align-items: center;
   margin-top: 5px;
-  display: none; 
+  display: none;
 }
 
 .bg-select-show {
@@ -69,7 +69,7 @@ body {
   -khtml-user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
-   user-select: none;
+  user-select: none;
 }
 
 .color-option:hover {
@@ -78,12 +78,6 @@ body {
 
 .pink {
   background-image: linear-gradient(0deg, rgba(247, 247, 247, 1) 23.8%, rgba(252, 221, 221, 1) 92%);
-  -moz-user-select: none;
-  -o-user-select: none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-   user-select: none;
 }
 
 .blue {
@@ -99,7 +93,7 @@ body {
 }
 
 .green {
-  background-image: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(123,253,45,1) 100%);
+  background-image: linear-gradient(0deg, rgba(34, 193, 195, 1) 0%, rgba(123, 253, 45, 1) 100%);
 }
 
 .music-container {
@@ -237,11 +231,10 @@ body {
 }
 
 .slider_container {
- opacity: 0;
- transition: transform 0.3s ease-in, opacity 0.3s ease-in;
- cursor: pointer;
+  opacity: 0;
+  transition: transform 0.3s ease-in, opacity 0.3s ease-in;
+  cursor: pointer;
 }
-
 
 .slider_container.play {
   opacity: 1;
@@ -255,7 +248,6 @@ body {
   background: transparent;
   transition: 0.3s;
 }
-
 
 .volume_slider {
   -webkit-appearance: none;
@@ -276,4 +268,3 @@ body {
   cursor: pointer;
   border-radius: 50%;
 }
-
